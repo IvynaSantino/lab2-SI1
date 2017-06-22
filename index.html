@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="NetSI">
+<head>
+    <meta charset="UTF-8">
+    <title>NetSI</title>
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="imports/css/style.css">
+    <script src="lib/angular/angular.js"></script>
+    <script src="imports/js/modules.js"></script>
+</head>
+
+<body ng-controller="NetSIController">
+    <div class = "jumbotron">
+        <h4>NetSI</h4>
+
+        <input class="form-control" type="text" ng-model="name" placeholder="Insira nome da série"/>
+        <button class = "btn btn-primary btn-block" ng-click="searchMovie(name)" ng-disabled = "!name">Pesquisar</button>
+        
+
+       {{films}}
+    </div>
+
+    <table class = "table">
+    	<thead>
+    		<tr>
+    			<th>Title</th>
+    			<th>Poster</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr ng-repeat = "film in films">
+    			<td><h2>{{film.Title}}</h2></td>
+    			<td><img ng-src= "{{film.Poster}}" width="200px" height="200px"></td>
+    		</tr>
+    	</tbody>
+    </table>
+</body>
+</html>
