@@ -5,12 +5,12 @@ angular.module("NetSI").controller("NetSIController", function ($scope, $http) {
     $scope.movies = [];
     $scope.watchlist = [];
     $scope.myMovies = [];
-    $scope.moviesPerfil = null;
 
     var ADD_PERFIL = "Série/Filme já adicionado ao perfil";
     var ADD_WATCHLIST = "Série/Filme já adicionado à watchlist";
 
     $scope.searchMovie = function(movie) {
+        
         $http.get('https://omdbapi.com/?s=' + movie + '&type=series&r=json&apikey=93330d3c')
         .then(existMovie);   
 
@@ -22,7 +22,7 @@ angular.module("NetSI").controller("NetSIController", function ($scope, $http) {
                     
                 } else {
                     $scope.movies = response.data.Search;
-                   
+                    
                 }
             }
 
@@ -30,38 +30,63 @@ angular.module("NetSI").controller("NetSIController", function ($scope, $http) {
         //falta colocar as imagens - sem foto  
     };
 
-
+    //Bug: add mais de uma vez o mesmo filme!!! 
     $scope.addMoviePerfil = function(movie) {
-       if (!$scope.existAddPerfil(movie, ADD_PERFIL)) {
+       if ($scope.existAddPerfil(movie)) {
+            alert("Série/Filme já adicionado ao perfil");
+       } else {
             $scope.myMovies.push(angular.copy(movie));
-           //delete $scope.movie;
        }
     };
     
 
     $scope.addMovieWatchlist = function(movie) {
-       // if (!$scope.existAdd(movie, watchlist, ADD_WATCHLIST)) {
-            $scope.watchlist.push(movie);
-        //}
+        if ($scope.existAddWatchlist(movie)) {
+            alert("Série/Filme já adicionado à watchlist");
+            
+        } else {
+            $scope.watchlist.push(angular.copy(movie));
+        }
     }
 
 
-    $scope.existAddPerfil = function(movie, message) {
-        var index = 0;
-
-        while (index < $scope.myMovies.lenght - 1) {
-            if (movie.Title === $scope.myMovies[index].Title) {
-                alert(message);
-                return true;
-            } 
-            index++;
+    $scope.existAddPerfil = function(movie) {
+        var cont = 0;
+        var result = false;
+        for (var i = 0; i < $scope.myMovies.lenght; i++) {
+            if (movie.Title == $scope.myMovies[i].Title) {
+                cont += 1;
+            }
         }
-        return false;
+
+        if (cont > 0) {
+            result = true;
+        }
+
+        return result;
+    }
+
+     $scope.existAddWatchlist = function(movie) {
+        var cont = 0;
+        var result = false;
+        for (var i = 0; i < $scope.watchlist.lenght; i++) {
+            if (movie.Title == $scope.watchlist[i].Title) {
+                cont += 1;
+            }
+        }
+
+        if (cont > 0) {
+            result = true;
+        }
+
+        return result;
     }
 
     $scope.viewPerfil = function() {
-        for (var i = 0; i < myMovies.lenght; i++) {
-            $scope.moviesPerfil = myMovies[i];
+        for (var i = 0; i < $scope.myMovies.lenght; i++) {
+            $scope.moviesPerfil = $scope.myMovies[i];
         }
     }
+
+    
 });
