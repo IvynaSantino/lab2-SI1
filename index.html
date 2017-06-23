@@ -19,15 +19,54 @@
 
     </div>
 
+    <!-- Visualizar series e filmes do perfil-->
     <h3>Perfil</h3>
-    <div ng-model = "colecao" ng-click = "viewPerfil()" ng-repeat = "colecao in myMovies">
-        <img ng-src = "{{colecao.Poster}}">
-        <h4>{{colecao.Title}}</h4>
-        <h3>{{colecao.Year}}</h3>
-    </div>>
+    <div>
+        <table class = "table table-striped">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Year</th>
+                <th>Poster</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+            <tr ng-model = "collection" ng-repeat = "collection in myMovies" ng-click = "viewPerfil()">
+                <td>{{collection.Title}}</td>
+                <td>{{collection.Year}}</td>
+                <td><img ng-src="{{collection.Poster}}" height="150px" width="100px"></td>
+            </tr>
+        </tbody>
+    </table>    
+    </div>
 
     <h3>WatchList</h3>>
 
+    <div>
+        <table class = "table table-striped">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Year</th>
+                <th>Poster</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+            <tr ng-model = "list" ng-repeat = "list in watchlist" ng-click = "viewPerfil()">
+                <td>{{list.Title}}</td>
+                <td>{{list.Year}}</td>
+                <td><img ng-src="{{list.Poster}}" height="150px" width="100px"></td>
+            </tr>
+        </tbody>
+    </table>    
+
+    </div>
+
+    <!-- Visualizar series e filmes na pesquisa. Pode adicionar ao perfil e à watchlist-->
     <div>
             <table class = "table table-striped"> 
                 <thead>
