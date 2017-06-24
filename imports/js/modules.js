@@ -22,7 +22,6 @@ angular.module("NetSI").controller("NetSIController", function ($scope, $http) {
                     
                 } else {
                     $scope.movies = response.data.Search;
-                    
                 }
             }
 
@@ -39,14 +38,11 @@ angular.module("NetSI").controller("NetSIController", function ($scope, $http) {
        }
     };
     
-
+    //Bug: add mais de uma vez o movie
     $scope.addMovieWatchlist = function(movie) {
-        if ($scope.existAddWatchlist(movie)) {
-            alert("Série/Filme já adicionado à watchlist");
-            
-        } else {
-            $scope.watchlist.push(angular.copy(movie));
-        }
+        $scope.watchlist.push(angular.copy(movie));
+        delete $scope.movie;
+        
     }
 
 
@@ -82,11 +78,27 @@ angular.module("NetSI").controller("NetSIController", function ($scope, $http) {
         return result;
     }
 
-    $scope.viewPerfil = function() {
-        for (var i = 0; i < $scope.myMovies.lenght; i++) {
-            $scope.moviesPerfil = $scope.myMovies[i];
+
+    $scope.removeMoviePerfil = function(movie) {
+        if(confirm("Deseja remover a série da sue perfil?")) {
+            var movieIndex = $scope.myMovies.indexOf(movie);
+            $scope.myMovies.splice(movieIndex, 1);
         }
+        
     }
 
+    $scope.removeMovieWL = function(movie) {
+        if (confirm("Deseja remover a série da sua watchlist?")) {
+            var movieIndex = $scope.watchlist.indexOf(movie);
+            $scope.watchlist.splice(movieIndex, 1);
     
+        }
+        
+    }
+
+    $scope.viewInfo = function(movie) {
+        var movieIndex = $scope.myMovies.indexOf(movie);
+        return $scope.myMovies[movieIndex];
+    }
+ 
 });
