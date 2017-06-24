@@ -29,23 +29,54 @@
         <thead>
             <tr>
                 <th>Título</th>
-                <th>Year</th>
+               
                 <th>Poster</th>
                 <th>Remover</th>
+                <th>Info</th>
             </tr>
 
         </thead>
 
         <tbody>
             <tr ng-class="{done: movie.done}" ng-repeat = "collection in myMovies">
-                <td><a href="infoMovie.html">{{collection.Title}}</a></td>
-                <td>{{collection.Year}}</td>
+                <td>{{collection.Title}}<div><span>{{collection.Year}}</span></div></td>
+                
                 <td><img ng-src="{{collection.Poster}}" height="150px" width="100px"></td>
                 <td><button class="close" ng-click = "removeMoviePerfil(collection)">&times;</button></td>
-
+                <td><button class="btn btn-primary" ng-click="addInfo(collection)" ng-click="viewInfo(collection)">+</button></td>
+                
+                {{info}}
             </tr>
         </tbody>
     </table>    
+    </div>
+
+
+    <div ng-model="infos">
+        <h3>Info</h3>
+        <table class = "table table-striped">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Ano</th>
+                    <th>Sinopse</th>
+                    <th>Rated</th>
+                    <th>Média</th>
+                    
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="infos in info">
+                    <td>{{infos.Title}}</td>
+                    <td>{{infos.Year}}</td>
+                    <td>{{infos.Plot}}</td>
+                    <td>{{infos.Rated}}</td>
+                    <td>{{infos.imdbRating}}</td>
+                </tr>
+            </tbody>
+        </table>
+              
     </div>
 
     <h3>WatchList</h3>
@@ -66,7 +97,10 @@
                 <td>{{list.Title}}</td>
                 <td>{{list.Year}}</td>
                 <td><img ng-src="{{list.Poster}}" height="150px" width="100px"></td>
+                <td><button class="btn" ng-click="viewInfo(list)"></button>Info</td>
                 <td><button class="close" ng-click = "removeMovieWL(list)">&times;</button></td>
+
+
             </tr>
         </tbody>
     </table>    
