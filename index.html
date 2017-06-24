@@ -8,8 +8,10 @@
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/angular/angular.js"></script>
     <script src="imports/js/modules.js"></script>
+    <script src="lib/angular/angular-route.min.js"></script>
 </head>
 
+<!-- Controler para pesquisa da serie -->
 <body ng-controller="NetSIController">
     <div class = "jumbotron">
         <h2>{{app}}</h2>
@@ -42,7 +44,7 @@
     </table>    
     </div>
 
-    <h3>WatchList</h3>>
+    <h3>WatchList</h3>
 
     <div>
         <table class = "table table-striped">
@@ -85,8 +87,8 @@
                         <td>{{movie.Title}}</td>
                         <td>{{movie.Year}}</td> 
                         <td><img ng-src="{{movie.Poster}}" height="200px" width="150px"/></td>
-                        <td><button class = "btn" ng-click = "addMoviePerfil(movie)">+</button>></td>
-                        <td><button class = "btn" ng-click = "addMovieWatchlist(movie)">+</button>></td>
+                        <td><button class = "btn" ng-click = "addMoviePerfil(movie)">+</button></td>
+                        <td><button class = "btn" ng-click = "addMovieWatchlist(movie)">+</button></td>
                     </tr>
                 </tbody>
         </div>     
