@@ -5,6 +5,9 @@ angular.module("NetSI").controller("NetSIController", function ($scope, $http) {
     $scope.movies = [];
     $scope.watchlist = [];
     $scope.myMovies = [];
+    $scope.flag;
+
+    $scope.info = [];
 
     var ADD_PERFIL = "Série/Filme já adicionado ao perfil";
     var ADD_WATCHLIST = "Série/Filme já adicionado à watchlist";
@@ -28,6 +31,22 @@ angular.module("NetSI").controller("NetSIController", function ($scope, $http) {
 
         //falta colocar as imagens - sem foto  
     };
+
+    $scope.viewInfo = function(movie) {
+        $scope.flag = false;
+        $http.get('https://omdbapi.com/?i=' + movie + '&plot=full&apikey=93330d3c')
+        .then(function (response) {
+            $scope.info = response.data.Search;
+            $scope.flag = true;
+        });   
+
+        //falta colocar as imagens - sem foto  
+    };
+
+
+    $scope.addInfo = function(movie) {
+        $scope.info.push(angular.copy(movie));
+    }
 
     //Bug: add mais de uma vez o mesmo filme!!! 
     $scope.addMoviePerfil = function(movie) {
