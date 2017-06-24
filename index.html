@@ -9,6 +9,7 @@
     <script src="lib/angular/angular.js"></script>
     <script src="imports/js/modules.js"></script>
     <script src="lib/angular/angular-route.min.js"></script>
+
 </head>
 
 <!-- Controler para pesquisa da serie -->
@@ -30,15 +31,18 @@
                 <th>Título</th>
                 <th>Year</th>
                 <th>Poster</th>
+                <th>Remover</th>
             </tr>
 
         </thead>
 
         <tbody>
-            <tr ng-model = "collection" ng-repeat = "collection in myMovies" ng-click = "viewPerfil()">
-                <td>{{collection.Title}}</td>
+            <tr ng-class="{done: movie.done}" ng-repeat = "collection in myMovies">
+                <td><a href="infoMovie.html">{{collection.Title}}</a></td>
                 <td>{{collection.Year}}</td>
                 <td><img ng-src="{{collection.Poster}}" height="150px" width="100px"></td>
+                <td><button class="close" ng-click = "removeMoviePerfil(collection)">&times;</button></td>
+
             </tr>
         </tbody>
     </table>    
@@ -58,10 +62,11 @@
         </thead>
 
         <tbody>
-            <tr ng-model = "list" ng-repeat = "list in watchlist" ng-click = "viewPerfil()">
+            <tr ng-class="{done: movie.done}" ng-model = "list" ng-repeat = "list in watchlist">
                 <td>{{list.Title}}</td>
                 <td>{{list.Year}}</td>
                 <td><img ng-src="{{list.Poster}}" height="150px" width="100px"></td>
+                <td><button class="close" ng-click = "removeMovieWL(list)">&times;</button></td>
             </tr>
         </tbody>
     </table>    
@@ -71,8 +76,11 @@
     <!-- Visualizar series e filmes na pesquisa. Pode adicionar ao perfil e à watchlist-->
     <div>
             <table class = "table table-striped"> 
+
                 <thead>
+                    
                     <tr>
+
                         <th>Título</th>
                         <th>Ano</th>
                         <th>Poster</th>
@@ -82,8 +90,9 @@
                 </thead>
 
                 <tbody>
+                    <h3>Resultado de pesquisa</h3>
                     <tr ng-repeat = "movie in movies">
-                        <h3>Resultado de pesquisa</h3>
+                        
                         <td>{{movie.Title}}</td>
                         <td>{{movie.Year}}</td> 
                         <td><img ng-src="{{movie.Poster}}" height="200px" width="150px"/></td>
