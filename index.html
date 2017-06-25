@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html ng-app="NetSI">
 <head>
     <meta charset="UTF-8">
@@ -59,6 +60,7 @@
                 <tr>
                     <th>Título</th>
                     <th>Ano</th>
+                    <th>Poster</th>
                     <th>Sinopse</th>
                     <th>Rated</th>
                     <th>Média</th>
@@ -70,6 +72,7 @@
                 <tr ng-repeat="infos in info">
                     <td>{{infos.Title}}</td>
                     <td>{{infos.Year}}</td>
+                    <td><img ng-src="{{infos.Poster}}" height="150px" width="100px"></td>
                     <td>{{infos.Plot}}</td>
                     <td>{{infos.Rated}}</td>
                     <td>{{infos.imdbRating}}</td>
