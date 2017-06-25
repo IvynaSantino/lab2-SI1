@@ -6,8 +6,10 @@ angular.module("NetSI").controller("NetSIController", function ($scope, $http) {
     $scope.watchlist = [];
     $scope.myMovies = [];
     $scope.flag;
-
+    
     $scope.info = [];
+    $scope.notasInfo = []
+    $scope.ultimoEp = [];
 
     var ADD_PERFIL = "Série/Filme já adicionado ao perfil";
     var ADD_WATCHLIST = "Série/Filme já adicionado à watchlist";
@@ -34,7 +36,7 @@ angular.module("NetSI").controller("NetSIController", function ($scope, $http) {
 
     $scope.viewInfo = function(movie) {
         $scope.flag = false;
-        $http.get('https://omdbapi.com/?i=' + movie + '&plot=full&apikey=93330d3c')
+        $http.get('https://omdbapi.com/?t=' + movie + '&plot=full&apikey=93330d3c')
         .then(function (response) {
             $scope.info = response.data.Search;
             $scope.flag = true;
@@ -46,6 +48,8 @@ angular.module("NetSI").controller("NetSIController", function ($scope, $http) {
 
     $scope.addInfo = function(movie) {
         $scope.info.push(angular.copy(movie));
+        //$scope.viewInfo(movie);
+
     }
 
     //Bug: add mais de uma vez o mesmo filme!!! 
@@ -59,8 +63,13 @@ angular.module("NetSI").controller("NetSIController", function ($scope, $http) {
     
     //Bug: add mais de uma vez o movie
     $scope.addMovieWatchlist = function(movie) {
-        $scope.watchlist.push(angular.copy(movie));
-        delete $scope.movie;
+        if (!$scope.existAddWatchlist(movie)) {
+            $scope.watchlist.push(angular.copy(movie));
+            delete $scope.movie;     
+        } else {
+            alert(ADD_WATCHLIST);
+        }
+       
         
     }
 
@@ -115,9 +124,21 @@ angular.module("NetSI").controller("NetSIController", function ($scope, $http) {
         
     }
 
-    $scope.viewInfo = function(movie) {
-        var movieIndex = $scope.myMovies.indexOf(movie);
-        return $scope.myMovies[movieIndex];
+    $scope.removeInfo = function(info) {
+        var movieIndex = $scope.info.indexOf(info);
+        $scope.info.splice(movieIndex, 1);
+    }
+
+//    $scope.viewInfo = function(movie) {
+  //      var movieIndex = $scope.myMovies.indexOf(movie);
+    //    return $scope.myMovies[movieIndex];
+    //}
+
+    $scope.addNotas = function(nota) {
+        $scope.notasInfo.push(angular.copy(nota));
     }
  
+    $scope.addEp = function(ep) {
+        $scope.ultimoEp.push(angular.copy(ep));
+    }
 });
