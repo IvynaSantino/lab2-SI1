@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html ng-app="NetSI">
 <head>
     <meta charset="UTF-8">
@@ -47,12 +46,13 @@
                 <td><button class="btn btn-primary" ng-click="addInfo(collection)" ng-click="viewInfo(collection)">+</button></td>
                 
                 {{info}}
+                {{notas}}
             </tr>
         </tbody>
     </table>    
     </div>
 
-
+    <!-- Bloco de informações sobre os movies--> 
     <div ng-model="infos">
         <h3>Info</h3>
         <table class = "table table-striped">
@@ -64,7 +64,11 @@
                     <th>Sinopse</th>
                     <th>Rated</th>
                     <th>Média</th>
-                    
+                    <th>Sua nota    </th>
+                    <th></th>
+                    <th>Ultimo ep</th>
+                    <th></th>
+                    <th>Remover</th>
                 </tr>
             </thead>
 
@@ -76,6 +80,12 @@
                     <td>{{infos.Plot}}</td>
                     <td>{{infos.Rated}}</td>
                     <td>{{infos.imdbRating}}</td>
+                    <td><input class="form-control" type="text" ng-model="nota" ng-click="addNotas(nota)"/></td>
+                    <td><button class = "btn btn-block">ok</button></td>
+                    <td><input class="form-control" type="text" ng-model="ep" ng-click="addEp(ep)"/></td>
+                    <td><button class = "btn btn-block">ok</button></td>
+                    <td><button class="close" ng-click = "removeInfo(infos)">&times;</button></td>
+
                 </tr>
             </tbody>
         </table>
