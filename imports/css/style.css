@@ -1,7 +1,7 @@
 .jumbotron {
-    width: 650px;
+    width: 1365px;
     text-align: center;
-    margin-top: auto;
+    margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
 }
@@ -11,9 +11,17 @@
 }
 
 .image-poster {
-	width: 200px;
-	height: 200px;
-	margin-left: 10px;
-	margin-right: 10px; 
+    width: 100px;
+    height: 100px;
+    margin-left: 10px;
+    margin-right: 10px; 
+
+}
+
+.button-perfil {
+    width: 40px;
+    height: 40px;
+    color: white;
+    background-color: lightskyblue;
 
 }
