@@ -61,7 +61,7 @@ angular.module("NetSI").controller("NetSIController", function ($scope, $http) {
        }
     };
 
-    $scope.addWPerfil = function(list) {
+    $scope.add = function(list) {
         $scope.myMovies.push(angular.copy(list));
     }
     
