@@ -45,8 +45,6 @@
                 <td><button class="close" ng-click = "removeMoviePerfil(collection)">&times;</button></td>
                 <td><button class="btn btn-primary" ng-click="addInfo(collection)" ng-click="viewInfo(collection)">+</button></td>
                 
-                {{info}}
-                {{notas}}
             </tr>
         </tbody>
     </table>    
@@ -114,7 +112,7 @@
                 <td>{{list.Year}}</td>
                 <td><img ng-src="{{list.Poster}}" height="150px" width="100px"></td>
                 <td><button class="btn" ng-click="addInfo(list)" ng-click="viewInfo(list)">+</button></td>
-                <td><button class = "btn" ng-click = "addWPerfil(list)">+</button></td>
+                <td><button class = "btn" ng-click = "add(list)">+</button></td>
                 <td><button class="close" ng-click = "removeMovieWL(list)">&times;</button></td>
 
 
