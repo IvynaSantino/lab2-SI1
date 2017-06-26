@@ -60,6 +60,10 @@ angular.module("NetSI").controller("NetSIController", function ($scope, $http) {
             $scope.myMovies.push(angular.copy(movie));
        }
     };
+
+    $scope.addWPerfil = function(list) {
+        $scope.myMovies.push(angular.copy(list));
+    }
     
     //Bug: add mais de uma vez o movie
     $scope.addMovieWatchlist = function(movie) {
